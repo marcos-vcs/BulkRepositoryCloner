@@ -1,6 +1,6 @@
 
 ## Clone GIT repositories in bulk
-
+> `Need to have git scm installed on your windows!`
 ### Technologies used in development
  - C#
  - .NET 5
