@@ -6,11 +6,15 @@ namespace BulkRepositoryCloner.Controller
 {
     public class GitOperationsController
     {
+        private static string FolderPath = @"C:\git";
+        private static string GitPath = @"C:\Program Files\Git";
+        private static string GitCommand = "git";
+        private static string GitClone = "-C C:\\git clone ";
+        private static string TxtName = "LIST_OF_REPOSITORY.txt";
+        private static string ApplicationPath = System.AppDomain.CurrentDomain.BaseDirectory.ToString();
 
         public static bool IsGitInstalled()
         {
-            const string GitPath = @"C:\Program Files\Git";
-
             try
             {
                 if ( new DirectoryInfo(GitPath).Exists )
@@ -33,8 +37,6 @@ namespace BulkRepositoryCloner.Controller
         {
             try
             {
-                const string TxtName = "LIST_OF_REPOSITORY.txt";
-                string ApplicationPath = System.AppDomain.CurrentDomain.BaseDirectory.ToString();
                 return new FileInfo(ApplicationPath + TxtName).Exists;
             }
             catch (Exception e)
@@ -46,8 +48,6 @@ namespace BulkRepositoryCloner.Controller
 
         public static bool CreateTxt()
         {
-            const string TxtName = "LIST_OF_REPOSITORY.txt";
-            string ApplicationPath = System.AppDomain.CurrentDomain.BaseDirectory.ToString();
 
             try
             {
@@ -73,10 +73,6 @@ namespace BulkRepositoryCloner.Controller
         {
             try
             {
-                string GitCommand = "git";
-                string GitClone = "-C C:\\git clone ";
-                const string TxtName = "LIST_OF_REPOSITORY.txt";
-                string ApplicationPath = System.AppDomain.CurrentDomain.BaseDirectory.ToString();
 
                 using (StreamReader sr  = File.OpenText(ApplicationPath + TxtName))
                 {
@@ -94,5 +90,12 @@ namespace BulkRepositoryCloner.Controller
             }
         }
 
+        public static void CreateGitFolder()
+        {
+            if (!new DirectoryInfo(FolderPath).Exists)
+            {
+                Directory.CreateDirectory(FolderPath);
+            }
+        }
     }
 }

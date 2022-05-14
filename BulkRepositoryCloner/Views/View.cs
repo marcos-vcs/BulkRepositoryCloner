@@ -60,9 +60,14 @@ namespace BulkRepositoryCloner.Views
             Console.WriteLine("---------------------------------------");
             Console.WriteLine(@"BY DEFAULT ALL CLONED REPOSITORY WILL BE AVAILABLE IN C:\GIT");
             Console.WriteLine("---------------------------------------");
+
+            Console.WriteLine("CHECKING IF THE GIT FOLDER EXISTS...");
+            GitOperationsController.CreateGitFolder();
+
             Console.WriteLine("STARTING THE REPOSITORY CLONING PROCESS...");
             Console.WriteLine();
             GitOperationsController.ExecuteGitCommands();
+            Console.ReadLine();
 
         }
     }
